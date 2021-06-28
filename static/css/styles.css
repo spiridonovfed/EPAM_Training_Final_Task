@@ -1,0 +1,54 @@
+body {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+table.table-bordered{
+    border:1px solid black;
+    margin-top:5px;
+    margin-bottom: 5px;
+  }
+table.table-bordered > thead > tr > th{
+    border:1px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
+
+
+img {
+width: 150px
+}
+
+.for_form {
+width: 10%;
+}
+
+p span {
+background-color: Chartreuse;
+}
+
+hr {
+height: 2px;
+border-width: 0;
+color: gray;
+background-color: gray
+}
+
+.navigation {
+text-align: left;
+}
+
+.center-form {
+      margin: auto;
+      width: 60%;
+      padding: 60px;
+    }
+
+
+.center_data {
+  margin: auto;
+  text-align: center;
+  width: 60%;
+  padding: 60px;
+}

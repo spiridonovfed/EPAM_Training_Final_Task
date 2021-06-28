@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+
+{% block title %}
+Personal Page
+{% endblock %}
+
+{% block content %}
+<div class="center_data">
+  <img src="{{ person_data.pic_link }}">
+  <hr>
+  <h4><b>First Name:</b> {{ person_data.first_name }} </h4>
+  <h4><b>Last Name:</b> {{ person_data.last_name }} </h4>
+  <h4><b>Gender:</b> {{ person_data.gender }} </h4>
+  <h4><b>Cell Number:</b> {{ person_data.cell }} </h4>
+  <h4><b>Email:</b> {{ person_data.email }} </h4>
+  <h4><b>Location:</b> {{ person_data.location }} </h4>
+  <hr>
+  <a class="btn btn-default" href="{{ url_for('edit_personal_page', person_id=person_data.id) }}" role="button">Edit data</a><br>
+  <br>
+  <a class="btn btn-danger" href="{{ url_for('delete_person_data', person_id=person_data.id) }}" role="button">Delete data</a>
+  <hr>
+  <a href="{{ url_for('index') }}">Go back to the homepage</a>
+</div>
+
+{% endblock %}
