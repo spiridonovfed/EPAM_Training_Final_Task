@@ -1,4 +1,5 @@
-from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
+from flask import (Blueprint, abort, flash, redirect, render_template, request,
+                   url_for)
 
 from persons_table import db
 from persons_table.models import DatabaseHandler, Person
