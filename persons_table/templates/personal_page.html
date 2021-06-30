@@ -22,11 +22,11 @@ Personal Page
   <h4><b>Email:</b> {{ person_data.email }} </h4>
   <h4><b>Location:</b> {{ person_data.location }} </h4>
   <hr>
-  <a class="btn btn-default" href="{{ url_for('edit_personal_page', person_id=person_data.id) }}" role="button">Edit data</a><br>
+  <a class="btn btn-default" href="{{ url_for('persons.edit_personal_page', person_id=person_data.id) }}" role="button">Edit data</a><br>
   <br>
-  <a class="btn btn-danger" href="{{ url_for('delete_person_data', person_id=person_data.id) }}" role="button">Delete data</a>
+  <a class="btn btn-danger" href="{{ url_for('persons.delete_person_data', person_id=person_data.id) }}" role="button">Delete data</a>
   <hr>
-  <a href="{{ url_for('index') }}">Go back to the homepage</a>
+  <a href="{{ url_for('persons.index') }}">Go back to the homepage</a>
 </div>
 
 {% endblock %}

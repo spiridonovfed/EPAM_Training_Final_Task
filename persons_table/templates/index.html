@@ -29,7 +29,7 @@ Random People Data
 <hr>
 
 <div>
-  <a class="btn btn-default" href="{{ url_for('new_entry') }}" role="button">Create an entry</a>
+  <a class="btn btn-default" href="{{ url_for('persons.new_entry') }}" role="button">Create an entry</a>
 
   <br>
   <br>
@@ -40,14 +40,14 @@ Random People Data
     {% if people_data.pages > 1%}
 
     {% if people_data.has_prev %}
-    <a href="{{ url_for('index', page = people_data.prev_num) }}">
+    <a href="{{ url_for('persons.index', page = people_data.prev_num) }}">
       << Previous Page |</a>
         {% endif %}
 
         {% for page in people_data.iter_pages(10, 10, 10, 10) %}
         {% if page %}
         {% if page != people_data.page %}
-        <a href="{{ url_for('index', page=page) }}">{{ page }}</a>
+        <a href="{{ url_for('persons.index', page=page) }}">{{ page }}</a>
         {% else %}
         <strong>{{ page }}</strong>
         {% endif %}
@@ -57,7 +57,7 @@ Random People Data
         {% endfor %}
 
         {% if people_data.has_next %}
-        <a href="{{ url_for('index', page = people_data.next_num) }}">| Next Page >></a>
+        <a href="{{ url_for('persons.index', page = people_data.next_num) }}">| Next Page >></a>
         {% endif %}
 
         {% endif %}
@@ -69,7 +69,7 @@ Random People Data
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th scope="col"><b>№</b></th>
+        <th scope="col"><b></b></th>
         <th scope="col"><b>First Name</b></th>
         <th scope="col"><b>Last Name</b></th>
         <th scope="col"><b>Gender</b></th>
@@ -91,7 +91,7 @@ Random People Data
         <td>{{ person_data.email }}</td>
         <td>{{ person_data.location }}</td>
         <td><img src="{{ person_data.pic_link }}"></td>
-        <td><a href="{{ url_for('personal_page', person_id=person_data.id)}}">Personal Page<a></td>
+        <td><a href="{{ url_for('persons.personal_page', person_id=person_data.id)}}">Personal Page<a></td>
       </tr>
       {% endfor %}
     </tbody>
