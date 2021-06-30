@@ -2,8 +2,7 @@ import requests
 from flask_wtf import FlaskForm
 from wtforms import DecimalField, StringField, SubmitField
 from wtforms.fields.html5 import EmailField
-from wtforms.validators import (URL, Email, InputRequired, NumberRange,
-                                ValidationError)
+from wtforms.validators import URL, Email, InputRequired, NumberRange, ValidationError
 
 
 # ---------- Quantity Form ---------------- #
