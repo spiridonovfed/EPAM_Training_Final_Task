@@ -7,7 +7,7 @@ on: push
 jobs:
   code_quality:
     runs-on: ubuntu-latest
-    name: Checks with black, isort and possibly run tests
+    name: Checks with black and possibly run tests
     container: python:3.9
 
     steps:
@@ -15,9 +15,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Run script
         run: |
-          pip install black isort pytest
+          pip install black pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           ls -la
           black --check .
-          isort --check .
           py.test tests
