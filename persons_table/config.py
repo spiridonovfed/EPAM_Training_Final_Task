@@ -8,5 +8,5 @@ ENTRIES_PER_PAGE = 300
 
 class Config:
     SECRET_KEY = "any-string-to-keep-in secret"  # Change to your settings
-    SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES_USERNAME}:{POSTGRES_PASSWORD}@localhost/{POSTGRES_DB_NAME}"
+    SQLALCHEMY_DATABASE_URI = "postgresql://testusr:password@db:5432/testdb"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
