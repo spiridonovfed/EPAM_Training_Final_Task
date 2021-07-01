@@ -54,7 +54,6 @@ def get_API_response(quantity):
         "results": quantity,
     }
     response = requests.get(url, params=parameters)
-    response.raise_for_status()
     return response.json()
 
 

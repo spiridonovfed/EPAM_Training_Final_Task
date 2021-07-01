@@ -85,11 +85,14 @@ def edit_personal_page(person_id):
     return render_template("new_entry.html", new_data_form=edit_form)
 
 
-@persons.route("/random-person")
+@persons.route("/random")
 def random_person_page():
     """Renders a personal page for a random person from the database."""
     return redirect(
-        url_for("personal_page", person_id=DatabaseHandler.generate_random_person_id())
+        url_for(
+            "persons.personal_page",
+            person_id=DatabaseHandler.generate_random_person_id(),
+        )
     )
 
 
