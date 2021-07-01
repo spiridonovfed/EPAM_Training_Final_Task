@@ -1,0 +1,106 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+
+
+{% block title %}
+Random People Data
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<p><span>{{msg}}</span></p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<h2><small>Current number of entries in the table: {{ current_quantity }}</small></h2>
+
+<div class="for_form">
+  {{ wtf.quick_form(quantity_form) }}
+</div>
+<hr>
+
+<div>
+  <a class="btn btn-default" href="{{ url_for('persons.new_entry') }}" role="button">Create an entry</a>
+
+  <br>
+  <br>
+
+  {% set table_nav %}
+  {% block table_navigation %}
+  <div class="navigation">
+    {% if people_data.pages > 1%}
+
+    {% if people_data.has_prev %}
+    <a href="{{ url_for('persons.index', page = people_data.prev_num) }}">
+      << Previous Page |</a>
+        {% endif %}
+
+        {% for page in people_data.iter_pages(10, 10, 10, 10) %}
+        {% if page %}
+        {% if page != people_data.page %}
+        <a href="{{ url_for('persons.index', page=page) }}">{{ page }}</a>
+        {% else %}
+        <strong>{{ page }}</strong>
+        {% endif %}
+        {% else %}
+        <span class=ellipsis>…</span>
+        {% endif %}
+        {% endfor %}
+
+        {% if people_data.has_next %}
+        <a href="{{ url_for('persons.index', page = people_data.next_num) }}">| Next Page >></a>
+        {% endif %}
+
+        {% endif %}
+  </div>
+  {% endblock %}
+  {% endset %}
+
+  {{ table_nav }}
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col"><b></b></th>
+        <th scope="col"><b>First Name</b></th>
+        <th scope="col"><b>Last Name</b></th>
+        <th scope="col"><b>Gender</b></th>
+        <th scope="col"><b>Phone Number</b></th>
+        <th scope="col"><b>Email</b></th>
+        <th scope="col"><b>Location</b></th>
+        <th scope="col"><b>Picture</b></th>
+        <th scope="col"><b>Personal Page</b></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for person_data in people_data.items %}
+      <tr>
+        <td scope="row">{{ (people_data.page - 1) * people_data.per_page + loop.index }}</td>
+        <td>{{ person_data.first_name }}</td>
+        <td>{{ person_data.last_name }}</td>
+        <td>{{ person_data.gender }}</td>
+        <td>{{ person_data.cell }}</td>
+        <td>{{ person_data.email }}</td>
+        <td>{{ person_data.location }}</td>
+        <td><img src="{{ person_data.pic_link }}"></td>
+        <td><a href="{{ url_for('persons.personal_page', person_id=person_data.id)}}">Personal Page<a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {{ table_nav }}
+
+  <br>
+
+</div>
+
+{% endblock %}
